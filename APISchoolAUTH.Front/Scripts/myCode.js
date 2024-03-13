@@ -1,12 +1,10 @@
 ﻿$(function () {
     getData();
-    
 });
 
 function getData() {
     $("#lista").css("display", "");
     $("#editado").css("display", "none");
-    
     $.ajax({
         type: "GET",
         url: "https://localhost:7071/api/Estudiantes",
@@ -17,8 +15,8 @@ function getData() {
                     + '</td><td>' + data[i].apellido
                     + '</td><td>' + data[i].nombre
                     + '</td><td>' + tratarFecha(data[i].fechaMatriculacion)
-                    + '</td><td><input type="button" id="btnEditar" value="Edit" onclick="editarRegistro(' + data[i].ID + ')"/>'
-                    + '</td><td><input type="button" id="btnBorrar" value="Delete" onclick="borrarRegistro(' + data[i].ID + ')"/>'
+                    + '</td><td><input type="button" id="btnEditar" value="Edit" onclick="editarRegistro(' + data[i].estudianteId + ')"/>'
+                    + '</td><td><input type="button" id="btnBorrar" value="Delete" onclick="borrarRegistro(' + data[i].estudianteId + ')"/>'
                     + '</td></tr>');
 
             }
@@ -35,28 +33,26 @@ function tratarFecha(fecha) {
 function borrarRegistro(id) {
     $.ajax({
         type: "DELETE",
-        url: "https://localhost:44382/api/Estudiantes/" + id,
+        url: "https://localhost:7071/api/Estudiantes/" + id,
         contentType: "application/json; charset=utf-8",
-        
         success: function (data) {
             getData();
         },
         error: function () {
             alert('error');
         }
-        
     })
 }
 
 function editarRegistro(id) {
     $.ajax({
         type: "GET",
-        url: "https://localhost:44382/api/Estudiantes/" + id,
+        url: "https://localhost:7071/api/Estudiantes/" + id,
         success: function (data) {
-            $('#editAlumnoId').val(data.ID);
-            $('#editAlumnoNombre').val(data.Nombre);
-            $('#editAlumnoApellido').val(data.Apellido);
-            $('#editAlumnoFecha').val(tratarFecha(data.FechaMatriculacion));
+            $('#editAlumnoId').val(data.estudianteId);
+            $('#editAlumnoNombre').val(data.nombre);
+            $('#editAlumnoApellido').val(data.apellido);
+            $('#editAlumnoFecha').val(tratarFecha(data.fechaMatriculacion));
             $("#lista").css("display", "none");
             $('#editado').css("display", "");
         }
@@ -64,7 +60,7 @@ function editarRegistro(id) {
 }
 
 function Guardar() {
-    
+
 
     var id = $('#editAlumnoId').val();
     var nombre = $('#editAlumnoNombre').val();
@@ -72,17 +68,17 @@ function Guardar() {
     var fecha = $('#editAlumnoFecha').val();
 
     var estudiante = {
-        ID: id,
-        Apellido: apellido,
-        Nombre: nombre,
-        FechaMatriculacion: fecha
+        estudianteId: id,
+        apellido: apellido,
+        nombre: nombre,
+        fechaMatriculacion: fecha
     };
-    alert(estudiante.Nombre);
+    alert(estudiante.nombre);
 
     $.ajax({
         type: "PUT",
-        url: "https://localhost:44382/api/Estudiantes/" + estudiante.ID,
-        //url: "https://localhost:44382/api/Estudiantes",
+        url: "https://localhost:7071/api/Estudiantes/" + estudiante.estudianteId,
+        //url: "https://localhost:7071/api/Estudiantes",
         data: JSON.stringify(estudiante),
         dataType: "json",
         contentType: "application/json;charset=utf-8",
