@@ -1,0 +1,43 @@
+﻿<div class="row">
+    <div class="col-md-6" id="lista">
+        <h4>Alumnos</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Apellido</th>
+                    <th>Nombre</th>
+                    <th>Fecha Matricula</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6" id="editado">
+        <h4>Edit Alumnos</h4>
+        <form class="form-group" id="editForm">
+            <input type="hidden" name="AlumnoId" id="editAlumnoId" />
+            <p>
+                <label>Nombre</label>
+                <input type="text" id="editAlumnoNombre"
+                       name="AlumnoNombre" class="form-control" />
+            </p>
+            <p>
+                <label>Apellido</label>
+                <input type="text" id="editAlumnoApellido"
+                       name="AlumnoApellido" class="form-control" />
+            </p>
+            <p>
+                <label>F.Matricula</label>
+                <input type="text" id="editAlumnoFecha"
+                       name="AlumnoFecha" class="form-control" />
+            </p>
+            <button id="submitEdit" class="btn btn-primary" 
+                    onclick="Guardar()">Guardar</button>
+        </form>
+    </div>
+</div>
