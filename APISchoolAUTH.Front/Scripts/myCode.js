@@ -9,14 +9,14 @@ function getData() {
     
     $.ajax({
         type: "GET",
-        url: "https://localhost:44382/api/Estudiantes",
+        url: "https://localhost:7071/api/Estudiantes",
         success: function (data) {
             $('#tableBody').empty();
             for (var i = 0; i < data.length; i++) {
-                $('#tableBody').append('<tr><td>' + data[i].ID
-                    + '</td><td>' + data[i].Apellido
-                    + '</td><td>' + data[i].Nombre
-                    + '</td><td>' + tratarFecha(data[i].FechaMatriculacion)
+                $('#tableBody').append('<tr><td>' + data[i].estudianteId
+                    + '</td><td>' + data[i].apellido
+                    + '</td><td>' + data[i].nombre
+                    + '</td><td>' + tratarFecha(data[i].fechaMatriculacion)
                     + '</td><td><input type="button" id="btnEditar" value="Edit" onclick="editarRegistro(' + data[i].ID + ')"/>'
                     + '</td><td><input type="button" id="btnBorrar" value="Delete" onclick="borrarRegistro(' + data[i].ID + ')"/>'
                     + '</td></tr>');
