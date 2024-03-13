@@ -68,17 +68,16 @@ function Guardar() {
     var fecha = $('#editAlumnoFecha').val();
 
     var estudiante = {
-        estudianteId: id,
-        apellido: apellido,
-        nombre: nombre,
-        fechaMatriculacion: fecha
+        ID: id,
+        Apellido: apellido,
+        Nombre: nombre,
+        FechaMatriculacion: fecha
     };
-    alert(estudiante.nombre);
+  
 
     $.ajax({
         type: "PUT",
         url: "https://localhost:7071/api/Estudiantes/" + estudiante.estudianteId,
-        //url: "https://localhost:7071/api/Estudiantes",
         data: JSON.stringify(estudiante),
         dataType: "json",
         contentType: "application/json;charset=utf-8",
@@ -87,4 +86,5 @@ function Guardar() {
             getData()
         }
     })
+
 }
