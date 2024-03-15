@@ -60,31 +60,31 @@ function editarRegistro(id) {
 }
 
 function Guardar() {
-
-
     var id = $('#editAlumnoId').val();
     var nombre = $('#editAlumnoNombre').val();
     var apellido = $('#editAlumnoApellido').val();
     var fecha = $('#editAlumnoFecha').val();
 
     var estudiante = {
-        ID: id,
-        Apellido: apellido,
-        Nombre: nombre,
-        FechaMatriculacion: fecha
+        estudianteId: id,
+        nombre: nombre,
+        apellido: apellido,
+        fechaMatriculacion: fecha
     };
-  
 
     $.ajax({
         type: "PUT",
-        url: "https://localhost:7071/api/Estudiantes/" + estudiante.estudianteId,
+        url: "https://localhost:7071/api/Estudiantes/" + id,
         data: JSON.stringify(estudiante),
         dataType: "json",
         contentType: "application/json;charset=utf-8",
         success: function (response) {
-            alert(response.data);
-            getData()
+            alert('Registro actualizado correctamente.');
+            getData();
+        },
+        error: function () {
+            alert('Error al intentar guardar el registro.');
         }
-    })
-
+    });
 }
+
